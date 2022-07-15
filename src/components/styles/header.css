@@ -1,0 +1,36 @@
+.header{
+    margin:0;
+    padding:0;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    /* border: 1px solid red; */
+    min-width: fit-content;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #8b6e2b;
+    margin-bottom: 5px;
+
+
+}
+
+.header-title{
+    
+    /* border: 1px solid red; */
+    min-width: max-content;
+    padding-left: 10px;
+    padding-right: 10px ;
+    font-size: 20px;
+    color: #8b6e2b;
+}
+
+.header > img{
+
+    position: absolute;
+    left: 0;
+    margin-left:5px ;
+    height: 40px;
+    border-radius: 100%;
+
+}
