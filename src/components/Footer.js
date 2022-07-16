@@ -5,7 +5,8 @@ const Footer = () => {
     return(
         <div className="Footer">
             <hr/>
-            <p>Admin Center</p>
+            <a href="./home">Home</a>
+            <a href="./admin">Admin Center</a>
             <hr/>
 
 

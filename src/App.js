@@ -3,6 +3,9 @@ import Header from './components/Header';
 import './components/styles/index.css';
 import Footer from './components/Footer';
 import { Route, Routes } from "react-router-dom";
+import Admin from "./components/Admin";
+
+
 const App = () =>{
 
     const menuarray = [
@@ -51,9 +54,9 @@ const App = () =>{
                                     <div className="item-container">
                                         <img src={item.pic} alt="picture of {item.name}"/>
                                         <span>ID: {item.id}</span>
-                                        <span>Category: {item.category}</span>
-                                        <span>Product: {item.name}</span>
-                                        <span>Price: PHP {item.price}</span>
+                                        {/* <span>Category: {item.category}</span> */}
+                                        <span>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</span>
+                                        <span> PHP {item.price}</span>
                                         <button>Add to Cart</button>
                                     </div>
                                 )})}
@@ -83,6 +86,31 @@ const App = () =>{
                         </div>
                     }
                 />
+
+                <Route path={"/home"}
+                    element={
+                        <div>
+                        <Header/>
+                        <MenuSection/>
+                        <Footer/>
+                        </div>
+                    }
+                />
+
+
+
+                <Route path={"/admin"}
+                    element={
+                        <div>
+                            <Header/>
+                            <Admin menuarray={menuarray}/>
+                            <Footer/>
+
+                        </div>
+
+                    }
+                    
+                    />
 
 
             </Routes>

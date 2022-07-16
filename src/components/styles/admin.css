@@ -1,0 +1,51 @@
+
+
+.admin-center-itemlist{
+    border: 1px solid red;
+    width: 100%;
+    min-width: fit-content;
+    
+}
+
+.admin-center-itemlist table, th, td{
+    border: 1px solid #86645a;
+    /* min-width: max-content; */
+}
+
+th{
+    background-color: #8b6e2b;
+    color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+td{
+    text-align: center;
+    vertical-align: center;
+}
+
+
+button{
+    min-width: max-content;
+    width: 40%;
+    margin: 2px;
+} 
+
+.add-menu-container > td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* background-color: beige; */
+    background-color: #d3dcda;
+}
+
+
+
+.add-menu-container input{
+    font-size: 12px;
+    width: 80%;
+    background-color: whitesmoke;
+}
+
+.admin-pic{
+    height: 50px;
+}
