@@ -1,13 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './styles/admin.css';
 
-const Admin = (props) => {
 
+const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList}) => {
+
+
+
+    
     /* -------------------------------------- Admin Center View ----------------- */
     return(
 
 
         <div>
+            
             <table className='admin-center-itemlist'>
                 <thead>
                     <tr>
@@ -21,16 +26,42 @@ const Admin = (props) => {
                 </thead>
                 <tbody>
 
-                    <tr className='add-menu-container'>
-                        <td className='id-column'><input placeholder='ID'></input></td>
-                        <td><input placeholder='Category'></input></td>
-                        <td><input placeholder='Name'></input></td>
-                        <td><input placeholder='Price'></input></td>
-                        <td><input placeholder='Image Link'></input></td>
-                        <td><button className='add-menu-button'>Add Menu</button></td>
+                    <tr className='add-menu-container' >
+                        <td className='id-column'>
+                            <p>Auto</p>
+                        </td>
+                        <td>
+                            <input placeholder='Category'
+                            value={newmenulist.category}
+                            onChange={(e)=>{setNewmenuList({...newmenulist, category: e.target.value})
+                            }}
+                            ></input>
+                        </td>
+                        <td>
+                            <input placeholder='Name'
+                            value={newmenulist.name}
+                            onChange={(e)=>setNewmenuList({...newmenulist, name: e.target.value})}
+                            ></input>
+                        </td>
+                        <td>
+                            <input placeholder='Price'
+                            value={newmenulist.price}
+                            onChange={(e)=>setNewmenuList({...newmenulist, price: e.target.value})}
+                            ></input>
+                        </td>
+                        <td>
+                            <input placeholder='Image Link'
+                            value={newmenulist.pic}
+                            onChange={(e)=>setNewmenuList({...newmenulist, pic: e.target.value})}
+                            ></input>
+                        </td>
+                        <td><button className='add-menu-button'
+                            onClick={addnewProduct} 
+                        
+                        >Add Menu</button></td>
                     </tr>
 
-                        {props.menuarray.map(
+                        {menuarray.map(
                             (itemlist)=>{
                                 return(
                                     <tr className='' key={itemlist.id}>

@@ -3,11 +3,21 @@
     position:relative;
     width: 100%;
     bottom: 0;
-    
+    display: flex;
+    align-items: center;
     
 }
 
 .Footer > a{
     padding: 5px;
     color: #8b6e2b;
+}
+
+.copyright-footer{
+    position:absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: -1;
 }
