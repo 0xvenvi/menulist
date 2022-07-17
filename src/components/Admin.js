@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import './styles/admin.css';
 
 
@@ -71,7 +71,7 @@ const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList}) => {
                                         <td>{itemlist.name}</td>
                                         <td>{itemlist.price}</td>
 
-                                        <td> <img className="admin-pic" src={itemlist.pic} alt="Picture of: {itemlist.name}"/> </td>
+                                        <td> <img className="admin-pic" src={itemlist.pic} alt={"Image of " + itemlist.name}/> </td>
                                         
                                         <td><button>Edit</button> 
                                         
