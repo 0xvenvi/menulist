@@ -33,6 +33,7 @@ const App = () =>{
     })
 
     const [cartList, setcartList] = useState([])
+    // const [cartitemlist, setCartitemlist] = useState([])
     const [newcart, setNewcart]=useState([])
  
 
@@ -46,7 +47,6 @@ const App = () =>{
 const onAddtocart = (cartitem) =>{
     console.log("Adding to cart")
 
-
     const cartEntry = {
         id:cartitem.id, 
         name:cartitem.name, 
@@ -55,7 +55,21 @@ const onAddtocart = (cartitem) =>{
         qty: 1,
         total: cartitem.price
     }
+
+    // const newCart = [...cartList, cartEntry]
+
+    // const cartreduce = newCart.reduce((ourcart, currentOurcart)=>{
+
+    //     if( ourcart.indexOf(currentOurcart.id) < 0){
+    //         ourcart.push([...cartList, qty: qty + 1])} 
+        
+    //     return(ourcart); },[])
+
     setcartList([...cartList, cartEntry]);
+
+    
+
+    
 
 }
 
@@ -122,8 +136,9 @@ const deleteCartitem = (productToRemove) => {
                 // Check the array, if the category is present the index is > or = 0
                 if( sectionCategory.indexOf(currentSection.category) < 0){
                     sectionCategory.push(currentSection.category)} 
+                    
                 return(sectionCategory); },[])
-                // console.log(sectionCategory)
+                console.log(sectionCategory)
 
         return(
             <div className="menu-body" key={uuid()}>
@@ -176,7 +191,9 @@ const deleteCartitem = (productToRemove) => {
                 <Route path={"/"}
                     element={
                         <div>
-                        <Header cartcount={cartcount}/>
+                        <div className="carticon-count">
+                            {cartcount}
+                        </div>
                         <MenuSection/>
                         <Cart cartList={cartList}
                             setcartList={setcartList}
@@ -185,7 +202,7 @@ const deleteCartitem = (productToRemove) => {
                             setNewcart={setNewcart}
                             deleteCartitem = {deleteCartitem}
                             />
-                        <Footer/>
+                        {/* <Footer/> */}
                         </div>
                     }
                 />
@@ -193,7 +210,9 @@ const deleteCartitem = (productToRemove) => {
                 <Route path={"/home"}
                     element={
                         <div>
-                        <Header cartcount={cartcount}/>
+                        <div className="carticon-count">
+                        {cartcount}
+                        </div>
                         <MenuSection/>
                         <Cart cartList={cartList}
                             setcartList={setcartList}
@@ -202,8 +221,6 @@ const deleteCartitem = (productToRemove) => {
                             setNewcart={setNewcart}
                             deleteCartitem = {deleteCartitem}
                             />
-
-                        <Footer/>
                         </div>
                     }
                 />
@@ -213,17 +230,12 @@ const deleteCartitem = (productToRemove) => {
                 <Route path={"/admin"}
                     element={
                         <div>
-                            <Header cartcount={cartcount}/>
                             <Admin menuarray={menuarray}
                                     addnewProduct={addnewProduct}
-
                                     newmenulist={newmenulist}
                                     setNewmenuList={setNewmenuList}
 
                                     />
-                                    
-                            <Footer/>
-
                         </div>
 
                     }
