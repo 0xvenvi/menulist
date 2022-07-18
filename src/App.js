@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Header from './components/Header';
 import './components/styles/index.css';
-import Footer from './components/Footer';
 import { Route, Routes } from "react-router-dom";
 import Admin from "./components/Admin";
 import Cart from "./components/Cart";
@@ -32,49 +30,61 @@ const App = () =>{
 
     })
 
+
     const [cartList, setcartList] = useState([])
-    // const [cartitemlist, setCartitemlist] = useState([])
-    const [newcart, setNewcart]=useState([])
- 
-
-    // const CART_PAGE = 'cart'
-    // const [page, setPage] = useState(CART_PAGE)
-
-
+    let [cartcount, setcartCount]=useState(0)
 
 /*  -------------------------------- Add to Cart --------------------------------- */
+    
 
 const onAddtocart = (cartitem) =>{
     console.log("Adding to cart")
 
-    const cartEntry = {
-        id:cartitem.id, 
-        name:cartitem.name, 
-        category:cartitem.category, 
-        price:cartitem.price,
-        qty: 1,
-        total: cartitem.price
+    setcartCount(cartcount+1)
+    // check if already in the list
+    const ProductExist = cartList.find((item) => item.id === cartitem.id);
+
+    if(ProductExist){
+        setcartList(cartList.map((item)=>
+            item.id===cartitem.id ? 
+            {...ProductExist, quantity:ProductExist.quantity + 1}: item));
+
+        } else{
+        setcartList([...cartList, {...cartitem, quantity: 1}])
     }
-
-    // const newCart = [...cartList, cartEntry]
-
-    // const cartreduce = newCart.reduce((ourcart, currentOurcart)=>{
-
-    //     if( ourcart.indexOf(currentOurcart.id) < 0){
-    //         ourcart.push([...cartList, qty: qty + 1])} 
-        
-    //     return(ourcart); },[])
-
-    setcartList([...cartList, cartEntry]);
-
-    
-
-    
 
 }
 
-const cartcount = cartList.length;
 
+
+/*  -------------------------------- Remove to Cart --------------------------------- */
+
+const onRemovetocart = (cartitem) =>{
+    console.log("Removing to cart")
+
+    setcartCount(cartcount-1)
+
+    const ProductExist = cartList.find((item) => item.id === cartitem.id);
+
+    if(ProductExist.quantity === 1){
+        setcartList(cartList.filter((item)=>item.id !== cartitem.id));
+    } else{
+        setcartList(
+            cartList.map((item)=>item.id === cartitem.id ? {...ProductExist, quantity: ProductExist.quantity - 1}
+            : item
+            )
+        );
+    }
+    }
+
+
+/*  -------------------------------- Clear Cart --------------------------------- */
+
+const cartClearance = () =>{
+    setcartList([]);
+    setcartCount(0);
+
+}
 
 
 
@@ -82,19 +92,13 @@ const cartcount = cartList.length;
 
 /*  -------------------------------- Delete in Cart --------------------------------- */
 
-const deleteCartitem = (productToRemove) => {
+const deleteCartitem = (cartitem) => {
     console.log("deleting")
-    
-  //filter all except that id that will be removed
-  let newcart = cartList.filter( (product) => product !== productToRemove)
-  console.log(newcart)
-  setcartList(newcart);
+
+    setcartCount(cartcount-cartitem.quantity)
+    setcartList(cartList.filter((item)=>item.id !== cartitem.id));
+   
 }
-
-
-
-/*  -------------------------------- Persist all changes on State --------------------------------- */
-
 
 
 
@@ -103,7 +107,7 @@ const deleteCartitem = (productToRemove) => {
 
 /*  -------------------------------- Add a New Product in the Menu --------------------------------- */
         const addnewProduct = () => {
-            let num = menuarray.length +1;
+            // let num = menuarray.length +1;
 
             let newmenuEntry = {id:uuid(), 
                             name: newmenulist.name,
@@ -195,52 +199,42 @@ const deleteCartitem = (productToRemove) => {
                             {cartcount}
                         </div>
                         <MenuSection/>
-                        <Cart cartList={cartList}
-                            setcartList={setcartList}
-                            onAddtocart={onAddtocart}
-                            newcart={newcart}
-                            setNewcart={setNewcart}
-                            deleteCartitem = {deleteCartitem}
-                            />
-                        {/* <Footer/> */}
                         </div>
                     }
                 />
-
-                <Route path={"/home"}
-                    element={
-                        <div>
-                        <div className="carticon-count">
-                        {cartcount}
-                        </div>
-                        <MenuSection/>
-                        <Cart cartList={cartList}
-                            setcartList={setcartList}
-                            onAddtocart={onAddtocart}
-                            newcart={newcart}
-                            setNewcart={setNewcart}
-                            deleteCartitem = {deleteCartitem}
-                            />
-                        </div>
-                    }
-                />
-
-
 
                 <Route path={"/admin"}
                     element={
                         <div>
+                            <div className="carticon-count">
+                            {cartcount}
+                            </div>
                             <Admin menuarray={menuarray}
                                     addnewProduct={addnewProduct}
                                     newmenulist={newmenulist}
                                     setNewmenuList={setNewmenuList}
-
                                     />
                         </div>
-
                     }
-                    
                     />
+
+
+                <Route path={"/cart"}
+                element={
+                    <div>
+                        <div className="carticon-count">
+                            {cartcount}
+                        </div>
+                        <Cart cartList={cartList}
+                            setcartList={setcartList}
+                            onAddtocart={onAddtocart}
+                            onRemovetocart={onRemovetocart}
+                            deleteCartitem = {deleteCartitem}
+                            cartClearance = {cartClearance}
+                            />
+                    </div>
+                }
+                />
 
 
             </Routes>

@@ -5,12 +5,14 @@
     bottom: 0;
     display: flex;
     align-items: center;
+    margin-top: auto;
     
 }
 
-.Footer > a{
+.footer-links{
     padding: 5px;
     color: #8b6e2b;
+
 }
 
 .copyright-footer{

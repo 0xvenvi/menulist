@@ -1,5 +1,6 @@
 import React from "react";
 import './styles/header.css';
+import {Link} from 'react-router-dom';
 
 const Header = ({cartcount}) => {
     const logolink = "https://img.freepik.com/premium-vector/bakery-bread-cakes-design-logo_545399-698.jpg?w=2000";
@@ -7,15 +8,21 @@ const Header = ({cartcount}) => {
 
     return(
         <div className="header">
-            <a href="./home"><img className="logo" src={logolink} alt="Logo Icon"/></a>
+            <p>
+                <Link to="/">
+                <img className="logo" src={logolink} alt="Logo Icon"/>
+                </Link>
+            </p>
             
             <h1 className="header-title"> My Bakery Menu</h1>
             
-            <a className="carticonlink" href="./">
-                
-                <img className="carticon" src={carticon} alt="cart icon"/>
-                <p className="carticon-count">{cartcount}</p>
-            </a>
+            
+            <Link to="./cart" className="carticonlink">
+            <img className="carticon" src={carticon} alt="cart icon"/>
+            </Link>
+            
+            <p className="carticon-count">{cartcount}</p>
+            
             
         </div>
 
