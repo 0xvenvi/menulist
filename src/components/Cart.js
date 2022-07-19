@@ -9,17 +9,19 @@ const Cart = ({cartList, onAddtocart, deleteCartitem, onRemovetocart, cartCleara
 
     return(
         <div className="cart-body">
-            <h1 className="cart-item-header" >Cart Items</h1>
+            <div className="cart-item-header" >
+                <h2>Cart Items</h2>
+                <div className="clearCart">
+                    {cartList.length >=1 && (
+                        <button className="clearCart-btn"
+                        onClick={cartClearance}>Clear Cart</button>
+                    )}
+                </div>
+            </div>
             <div>
                 {/* Check if cart is empty */}
                 {cartList.length === 0 && <div>No items is added in the cart</div>}
-                <div className="clearCart">
-
-                        {cartList.length >=1 && (
-                            <button
-                            onClick={cartClearance}>Clear Cart</button>
-                        )}
-                    </div>
+               
             </div>
 
             <div>
@@ -40,7 +42,7 @@ const Cart = ({cartList, onAddtocart, deleteCartitem, onRemovetocart, cartCleara
                             <img className="cart-items-image" 
                                 src={item.pic} 
                                 alt={item.name} />
-                            <p className="cart-item-name">{item.name}</p>
+                            <p className="cart-item-name">{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</p>
                             <div className="cart-items-quantity" >
                                 <button className="cart-items-lessqty qtyadjust"
                                         onClick={()=>onRemovetocart(item)}
@@ -53,8 +55,8 @@ const Cart = ({cartList, onAddtocart, deleteCartitem, onRemovetocart, cartCleara
 
                             <p className="totalitemPrice">PHP {item.quantity * item.price} </p>
 
-                            <div>
-                                <button onClick={()=>deleteCartitem(item)}>Delete</button>
+                            <div className="cart-action-container">
+                                <button className="cart-action-btn" onClick={()=>deleteCartitem(item)}>Delete</button>
 
                             </div>
 

@@ -12,6 +12,49 @@
 
 }
 
+
+.cart-item-header{
+    position: relative;
+    /* border: 1px solid red; */
+    background-color: #6a5420;
+    color: white;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    height: 30px;
+    /* font-size: 30px; */
+}
+
+.clearCart{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right:10px;
+
+
+
+}
+
+.clearCart-btn{
+    background-color: beige;
+    padding: 5px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.clearCart-btn:hover{
+    background-color: rgb(221, 221, 196);
+}
+
+
+.clearCart-btn:active{
+    background-color: orange;
+    color:white;
+}
+
+
+
 .cart-items-image{
     height: 70px;
     align-self: center;
@@ -65,11 +108,45 @@
 .totalPrice{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    border: 1px solid red;
+    /* border: 1px solid red;    */
 
 }
 
 .totalpriceText{
     grid-column-start: 5;
     justify-self: center;
+}
+
+.cart-action-container{
+    display: flex;
+    justify-content: center;
+}
+
+
+.cart-action-btn{
+    font-size: 13px;
+    font-style: italic;
+    border: 1px solid #8b6e2b  ;
+    border-radius: 5px;
+    padding: 2px;
+    cursor: pointer;
+    height: 25px;
+    width: 50%;
+    min-width: fit-content;
+    max-width: 75%;
+}
+
+.cart-action-btn:hover{
+    background-color: #8b6e2b;
+    color: white;
+    font-size: 14px;
+    border: 1px solid gold;
+
+}
+
+.cart-action-btn:active{
+    background-color: gold;
+    color: black;
+    border: 1px solid black;
+    transform: translateY(2px);
 }

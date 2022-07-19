@@ -3,7 +3,7 @@
     padding:0;
     display: flex;
     flex-direction: row;
-    height: 50px;
+    height: 70px;
     /* border: 1px solid red; */
     min-width: fit-content;
     justify-content: center;
@@ -21,7 +21,7 @@
     min-width: max-content;
     padding-left: 10px;
     padding-right: 10px ;
-    font-size: 20px;
+    font-size: 25px;
     color: #8b6e2b;
 }
 
@@ -32,7 +32,7 @@
     top:0;
     margin-left:5px ;
     margin-top: 5px;
-    height: 40px;
+    height: 60px;
     border-radius: 5px 20px 5px;
     border: 1px solid #8b6e2b;
 }
@@ -45,7 +45,7 @@
     margin-right:10px ;
     margin-top: 5px;
     padding: 1px;
-    height: 40px;
+    height: 60px;
     border-radius: 100%;
     border: 1px solid #8b6e2b;
 }
@@ -54,7 +54,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600;
     color: white;
     margin-right: 8px;
@@ -62,7 +62,7 @@
     text-align: center;
     text-justify: center;
     background-color: teal;
-    width: 15px;
+    width: 20px;
     border-radius: 5px;
     
 

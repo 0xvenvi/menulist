@@ -22,7 +22,13 @@ const App = () =>{
         {id:uuid(), name:"pride cake", category:"Cakes", price:"250", status:false, pic:"https://images-gmi-pmc.edge-generalmills.com/63b528dc-8beb-4289-96e3-6d8bef0a898d.jpg"},
         {id:uuid(), name:"chocolate cake", category:"Cakes", price:"300", status:false, pic:"https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1043451_11-4713959.jpg"},
         {id:uuid(), name:"blueberry cake", category:"Cakes", price:"350", status:false, pic:"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2017/5/11/0/FNK_Wake-and-Cake-Blueberry-Breakfast-Cake-H-2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1494520426604.jpeg"},
-        {id:uuid(), name:"test", category:"test", price:"100", status:false, pic:"test"}
+        {id:uuid(), name:"sourdough", category:"Bread & Buns", price:"120", status:false, pic:"https://nationaltoday.com/wp-content/uploads/2021/10/sourdough-bread-640x514.jpg"},
+        {id:uuid(), name:"baguette", category:"Bread & Buns", price:"90", status:false, pic:"https://static.toiimg.com/thumb/76545839.cms?imgsize=462529&width=800&height=800"},
+        {id:uuid(), name:"sliced bread", category:"Bread & Buns", price:"70", status:false, pic:"https://s.yimg.com/ny/api/res/1.2/3j.6_c0fSB.8LGotqmjrcg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MA--/https://media.zenfs.com/en/myrecipes_643/a0f04c9c7ed1db1213fb9bff5e521419"},
+        {id:uuid(), name:"french toast", category:"Bread & Buns", price:"110", status:false, pic:"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2008/3/26/0/IE0309_French-Toast.jpg.rend.hgtvcom.616.462.suffix/1431730431340.jpeg"},
+        {id:uuid(), name:"gingerbread", category:"Cookies & Pastries", price:"50", status:false, pic:"https://www.pamperedchef.com/iceberg/com/recipe/1335021-2-lg.jpg"},
+        {id:uuid(), name:"cinnamon doughnut", category:"Doughnuts", price:"70", status:false, pic:"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/7/29/0/BX0903H_cinnamon-baked-doughnuts-recipe_s4x3.jpg.rend.hgtvcom.616.462.suffix/1449692373072.jpeg"},
+        {id:uuid(), name:"cinnamon doughnut", category:"Doughnuts", price:"70", status:false, pic:"https://i.pinimg.com/736x/82/e0/6c/82e06cb9adc1b752c6cde21e69f96345.jpg"},
     ])
 
     const [newmenulist, setNewmenuList] = useState({
@@ -110,15 +116,38 @@ const deleteCartitem = (cartitem) => {
             // let num = menuarray.length +1;
 
             let newmenuEntry = {id:uuid(), 
-                            name: newmenulist.name,
-                            category: newmenulist.category, 
-                            price: newmenulist.price,
+                            name: newmenulist.name.toLowerCase().trim(),
+                            category: newmenulist.category.trim(), 
+                            price: newmenulist.price.trim(),
                             status: false,
-                            pic: newmenulist.pic
+                            pic: newmenulist.pic.trim()
                         }
-            // console.log(newmenuEntry);
+
+            // Check if it already exist
+            const alreadyExist = menuarray.find((item)=>item.name===newmenuEntry.name)
+                        
+
         
-            setMenuarray([...menuarray, newmenuEntry]);
+            if(newmenuEntry.name==="" || newmenuEntry.category==="" || newmenuEntry.price==="" || newmenuEntry.pic===""){
+                alert("Please fill out all data")
+            }else{
+
+                if(alreadyExist){
+                    alert("it already exist")
+                }else{
+                    setMenuarray([...menuarray, newmenuEntry]);
+    
+                }
+
+
+            }
+            
+
+            
+
+           
+
+            
             // setNewmenuList({id:"", name:"", category:"", price:"", status:"", pic:""})
         }
 
@@ -165,7 +194,7 @@ const deleteCartitem = (cartitem) => {
                                 return(
                                     <div className="item-container" key={item.id}>
                                         <img src={item.pic} alt={"Image of " + item.name}/>
-                                        <span>ID: {item.id}</span>
+                                        {/* <span>ID: {item.id}</span> */}
                                         {/* <span>Category: {item.category}</span> */}
                                         <span >{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</span>
                                         <span className="price" > PHP {item.price}</span>

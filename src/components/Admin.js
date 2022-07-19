@@ -46,12 +46,14 @@ const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList}) => {
                         <td>
                             <input placeholder='Price'
                             value={newmenulist.price}
+                            type="number"
                             onChange={(e)=>setNewmenuList({...newmenulist, price: e.target.value})}
                             ></input>
                         </td>
                         <td>
                             <input placeholder='Image Link'
                             value={newmenulist.pic}
+                            type="url"
                             onChange={(e)=>setNewmenuList({...newmenulist, pic: e.target.value})}
                             ></input>
                         </td>
@@ -68,7 +70,7 @@ const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList}) => {
                                         
                                         <td className='id-column'>{itemlist.id}</td>
                                         <td>{itemlist.category}</td>
-                                        <td>{itemlist.name}</td>
+                                        <td>{itemlist.name.charAt(0).toUpperCase() + itemlist.name.slice(1)}</td>
                                         <td>{itemlist.price}</td>
 
                                         <td> <img className="admin-pic" src={itemlist.pic} alt={"Image of " + itemlist.name}/> </td>
