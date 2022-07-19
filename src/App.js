@@ -93,67 +93,50 @@ const cartClearance = () =>{
 }
 
 
-
-
-
 /*  -------------------------------- Delete in Cart --------------------------------- */
 
 const deleteCartitem = (cartitem) => {
-    console.log("deleting")
-
+    // console.log("deleting")
     setcartCount(cartcount-cartitem.quantity)
     setcartList(cartList.filter((item)=>item.id !== cartitem.id));
    
 }
 
-
-
-
-
-
 /*  -------------------------------- Add a New Product in the Menu --------------------------------- */
-        const addnewProduct = () => {
-            // let num = menuarray.length +1;
+    const addnewProduct = () => {
+        // let num = menuarray.length +1;
 
-            let newmenuEntry = {id:uuid(), 
-                            name: newmenulist.name.toLowerCase().trim(),
-                            category: newmenulist.category.trim(), 
-                            price: newmenulist.price.trim(),
-                            status: false,
-                            pic: newmenulist.pic.trim()
-                        }
+        let newmenuEntry = {id:uuid(), 
+                        name: newmenulist.name.toLowerCase().trim(),
+                        category: newmenulist.category.trim(), 
+                        price: newmenulist.price.trim(),
+                        status: false,
+                        pic: newmenulist.pic.trim()
+                    }
 
-            // Check if it already exist
-            const alreadyExist = menuarray.find((item)=>item.name===newmenuEntry.name)
-                        
-
-        
-            if(newmenuEntry.name==="" || newmenuEntry.category==="" || newmenuEntry.price==="" || newmenuEntry.pic===""){
-                alert("Please fill out all data")
+        // Check if it already exist
+        const alreadyExist = menuarray.find((item)=>item.name===newmenuEntry.name)
+        if(newmenuEntry.name==="" || newmenuEntry.category==="" || newmenuEntry.price==="" || newmenuEntry.pic===""){
+            alert("Please fill out all data")
+        }else{
+            if(alreadyExist){
+                alert("it already exist")
             }else{
-
-                if(alreadyExist){
-                    alert("it already exist")
-                }else{
-                    setMenuarray([...menuarray, newmenuEntry]);
-    
-                }
-
-
-            }
-            
-
-            
-
-           
-
-            
-            // setNewmenuList({id:"", name:"", category:"", price:"", status:"", pic:""})
-        }
+                setMenuarray([...menuarray, newmenuEntry]);
+            }}
+    }
 
 
 
+/*  -------------------------------- Delete Product in the Menu --------------------------------- */
 
+const deleteProduct = (selectedProduct) =>{
+    setMenuarray(menuarray.filter((item)=>item.id !== selectedProduct.id));
+    // deleteCartitem(selectedProduct);
+    setcartList(cartList.filter((item)=>item.id !== selectedProduct.id));
+    setcartCount(cartList.length);
+
+}
 
 
 
@@ -242,6 +225,7 @@ const deleteCartitem = (cartitem) => {
                                     addnewProduct={addnewProduct}
                                     newmenulist={newmenulist}
                                     setNewmenuList={setNewmenuList}
+                                    deleteProduct={deleteProduct}
                                     />
                         </div>
                     }

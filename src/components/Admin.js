@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/admin.css';
 
 
-const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList}) => {
+const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList, deleteProduct}) => {
 
 
 
@@ -77,7 +77,9 @@ const Admin = ({menuarray, addnewProduct, newmenulist, setNewmenuList}) => {
                                         
                                         <td><button>Edit</button> 
                                         
-                                        <button>Delete</button></td>
+                                        <button
+                                        onClick={()=>{deleteProduct(itemlist)}}
+                                        >Delete</button></td>
                                     </tr>
                                 )
                             }
